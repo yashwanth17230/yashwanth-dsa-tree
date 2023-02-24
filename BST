@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+	
+	int data;
+	struct node*leftlink;
+	struct node*rightlink;
+};
+
+struct node*temp=NULL;
+struct node*newnode(int a)
+{
+  struct node*newnode=(struct node* )malloc(sizeof(struct node));
+  newnode->data=a;
+  newnode->leftlink=NULL;
+  newnode->rightlink=NULL;
+  return newnode;
+}
+
+struct node*levelorder(int a[10],struct node* temp)
+{
+   struct node*root=NULL;
+    if(temp==NULL)
+    {
+      struct node*newnode=(struct node* )malloc(sizeof(struct node));
+      newnode->data=a;
+      newnode->leftlink=NULL;
+      newnode->rightlink=NULL;
+      return newnode;
+    } 
+  else if(a<temp->data)
+    {
+      node->leftlink=levelorder(a,temp->leftlink);
+    }
+  else
+    {
+     node->rightlink=newnode(temp->rightlink);
+    }
+return temp;
+}
+void inorder(struct node*root)
+{
+     if(root !=NULL)
+      {
+	 inorder(root->leftlink);
+	 printf("%d",root->data);
+	 inorder(root->rightlink);
+      }
+}
+
+void preorder(struct node*root)
+{  
+   if(root !=NULL)
+   { 
+     printf("%d",root->data);
+     preorder(root->leftlink);
+     preorder(root->rightlink);
+   }
+}
+
+void postorder(struct node*root)
+{
+   
+   if(root !=NULL)
+   { 
+     postorder(root->leftlink);
+     postorder(root->rightlink);
+     printf("%d",root->data);
+   }
+}
+   
+	
+void main()
+{
+     temp=NULL;
+        int n,i,a[30];
+	printf("enter the size");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+	 scanf("%d",&a[i]);
+	}
+	temp=levelorder( a, temp);
+        inorder(temp);
+        preorder(temp);
+        postorder(temp);
+}
